@@ -60,6 +60,7 @@ public class DispatcherServlet extends HttpServlet {
 		Controller controller = Resource.RESOURCE_MAP.get(uri);
 		String target = (controller != null) ? controller.handleRequest(request, response) : ViewPath.HOME;
 		if(target != null){
+			request.getSession().setAttribute(ServletAttribute.LASTVISITED, target);
 			request.setAttribute(ServletAttribute.TARGET, target);
 			request.getRequestDispatcher(ViewPath.DASH_BOARD).forward(request, response);
 		} else {

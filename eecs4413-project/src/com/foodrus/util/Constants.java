@@ -24,6 +24,12 @@ public class Constants {
 		public static final String ITEMS = "com.foodrus.util.items";
 		public static final String SEARCH_RESULT = "com.foodrus.util.searchResult";
 		public static final String ERRORS = "com.foodrus.util.errors";
+		public static final String LASTVISITED = "com.foodrus.util.lasturl";
+		public static final String USER = "user";
+		public static final String HASH = "hash";
+		public static final String BACK = "back";
+		public static final String TRADESECRET = "secret";
+		public static final String AUTHSERVER = "https://www.eecs.yorku.ca/~cse31008/projectAuth/Auth.cgi?back=";
 	}
 
 	// *** ServletAttributes constants
@@ -78,4 +84,5 @@ public class Constants {
 	public static final class DAO{
 		public static final String JNDI_NAME = "java:/comp/env/jdbc/EECS";
 	}
+
 }
