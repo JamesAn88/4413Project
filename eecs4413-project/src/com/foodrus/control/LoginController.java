@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.foodrus.bean.UserProfile;
 import com.foodrus.util.Constants;
 
 
@@ -30,8 +31,10 @@ public class LoginController implements Controller {
 				System.out.println("hashed = " + hashed);
 				if (hash.equalsIgnoreCase(hashed)){
 					//successful login
-					
-					request.getSession().setAttribute(Constants.ServletAttribute.LOGGED_IN, user);
+					UserProfile profile = new UserProfile();
+					//profile.setName here
+					profile.setAccount(user);
+					request.getSession().setAttribute(Constants.ServletAttribute.LOGGED_IN, profile);
 					
 					String lastvisited = (String)request.getSession().getAttribute(Constants.ServletAttribute.LASTVISITED);
 					if (lastvisited != null){

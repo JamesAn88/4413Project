@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.foodrus.bean.ShoppingCart;
 import com.foodrus.util.Constants;
+import com.foodrus.util.Constants.ServletAttribute;
 
 public class CheckOutController implements Controller {
 
@@ -29,12 +31,17 @@ public class CheckOutController implements Controller {
 			String url = request.getRequestURL().toString();
 			url = url.substring(0, url.indexOf(request.getPathInfo()));
 			url=url+Constants.Url.SEPARATOR+Constants.Resource.LOGIN;
+			System.out.println("From Checkout Controller, redirecting to: " + url);
 			response.sendRedirect(url);
 			return null;
+		} 
+		// user logged in
+		ShoppingCart cart = (ShoppingCart) session.getAttribute(ServletAttribute.CART);
+		if (cart == null || cart.getTotalItems() == 0){
+			//no items
 		} else {
 			
 		}
-		
 		return null;
 	}
 

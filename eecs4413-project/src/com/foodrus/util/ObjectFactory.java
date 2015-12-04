@@ -8,10 +8,20 @@
 
 package com.foodrus.util;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Iterator;
+import java.util.Set;
+
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
 import javax.xml.namespace.QName;
+
+import com.foodrus.bean.ShoppingCart;
+import com.foodrus.bean.ShoppingItem;
+import com.foodrus.bean.UserProfile;
+import com.foodrus.bean.vo.Item;
 
 
 /**
@@ -87,6 +97,37 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "order")
     public JAXBElement<OrderType> createOrder(OrderType value) {
         return new JAXBElement<OrderType>(_Order_QNAME, OrderType.class, null, value);
+    }
+    
+    public OrderType createOrder(ShoppingCart cart, UserProfile profile){
+    	OrderType order = createOrderType();
+    	
+    	//customer
+    	CustomerType cust = createCustomerType();
+    	cust.setAccount(profile.getAccount());
+    	cust.setName(profile.getUserName()); //may be null at the moment
+    	order.setCustomer(cust);
+    	
+    	//items
+    	ItemsType items = createItemsType();
+    	Set<ShoppingItem> shoppingItems = cart.getItems();
+    	Iterator<ShoppingItem> ite = shoppingItems.iterator();
+    	while (ite.hasNext()){
+    		ShoppingItem sitem = ite.next();
+    		ItemType itemType = createItemType();
+    		Item item = sitem.getItem();
+    		itemType.setName(item.getName());
+    		itemType.setPrice(BigDecimal.valueOf(item.getPrice()));
+    		itemType.setQuantity(BigInteger.valueOf(Integer.valueOf(sitem.getQty())));
+    		itemType.setExtended(BigDecimal.valueOf(sitem.getPriceBeforeTax()));
+    		String number = item.getNumber();
+    		if (number != null){
+    			itemType.setNumber(number);
+    		}
+    		items.getItem().add(itemType);
+    	}
+    	
+    	return null;
     }
 
 }
