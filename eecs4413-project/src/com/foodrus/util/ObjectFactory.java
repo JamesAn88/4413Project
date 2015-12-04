@@ -10,12 +10,14 @@ package com.foodrus.util;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.Set;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.datatype.DatatypeFactory;
 import javax.xml.namespace.QName;
 
 import com.foodrus.bean.ShoppingCart;
@@ -99,7 +101,7 @@ public class ObjectFactory {
         return new JAXBElement<OrderType>(_Order_QNAME, OrderType.class, null, value);
     }
     
-    public OrderType createOrder(ShoppingCart cart, UserProfile profile){
+    public OrderType createOrder(ShoppingCart cart, UserProfile profile, String hst, String shippingFee, String shippingWaive, String reducedShipping) throws Exception{
     	OrderType order = createOrderType();
     	
     	//customer
@@ -126,8 +128,38 @@ public class ObjectFactory {
     		}
     		items.getItem().add(itemType);
     	}
+    	order.setItems(items);
     	
-    	return null;
+    	//Total
+    	double total = cart.getTotalPriceBeforeTax();
+    	order.setTotal(BigDecimal.valueOf(total));
+    	
+    	//shipping
+    	double shipping;
+    	double nonReduced = Double.parseDouble(shippingFee);
+    	double reduced = Double.parseDouble(reducedShipping);
+    	double waived = Double.parseDouble(shippingWaive);
+    	if (total < waived){
+    		shipping = reduced;
+    	} else {
+    		shipping = nonReduced;
+    	}
+    	order.setShipping(BigDecimal.valueOf(shipping));
+    	
+    	//hst
+    	double HST = Double.parseDouble(hst);
+    	order.setHST(BigDecimal.valueOf(HST));
+    	
+    	//grandtotal
+    	double grandTotal = (shipping + total) * (HST + 1.0);
+    	grandTotal = Math.round(grandTotal * 100);
+    	grandTotal = grandTotal/100;
+    	order.setGrandTotal(BigDecimal.valueOf(grandTotal));
+    
+    	//submitted
+    	GregorianCalendar gregorianCalendar = new GregorianCalendar();
+    	order.setSubmitted(DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar));
+    	return order;
     }
 
 }
