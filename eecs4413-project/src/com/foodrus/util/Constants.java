@@ -49,16 +49,16 @@ public class Constants {
 
 	// *** Resource constants
 	public static final class Resource {
-		private static final String LOGIN = "login";
-		private static final String HOME = "home";
-		private static final String ADD_ITEM = "additem";
-		private static final String REMOVE_ITEM = "removeitem";
-		private static final String CHECK_OUT = "checkout";
-		private static final String SEARCH = "search";
-		private static final String BROWSE_CATEGORIES = "browsecategories";
-		private static final String LIST_ITEMS = "listitems";
-		private static final String SHOW_CART = "showcart";
-		private static final Map<String, Controller> res_map = new HashMap<>();
+		public static final String LOGIN = "login";
+		public static final String HOME = "home";
+		public static final String ADD_ITEM = "additem";
+		public static final String REMOVE_ITEM = "removeitem";
+		public static final String CHECK_OUT = "checkout";
+		public static final String SEARCH = "search";
+		public static final String BROWSE_CATEGORIES = "browsecategories";
+		public static final String LIST_ITEMS = "listitems";
+		public static final String SHOW_CART = "showcart";
+		public static final Map<String, Controller> res_map = new HashMap<>();
 		static{
 			res_map.put(LOGIN, new LoginController());
 			res_map.put(HOME, new HomeController());

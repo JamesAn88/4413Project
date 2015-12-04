@@ -41,11 +41,12 @@ public class LoginController implements Controller {
 					} else {
 						return Constants.ViewPath.HOME;
 					}
+				} else {
+					response.sendRedirect(Constants.ServletAttribute.AUTHSERVER+request.getRequestURL());
 				}
 			} catch (Exception e){
 				throw new ServletException(e);
 			}
-					
 		} else {
 			try{
 				response.sendRedirect(Constants.ServletAttribute.AUTHSERVER+request.getRequestURL());

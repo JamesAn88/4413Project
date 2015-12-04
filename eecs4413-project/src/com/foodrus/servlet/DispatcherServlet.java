@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.foodrus.control.Controller;
+import com.foodrus.util.Constants;
 import com.foodrus.util.Constants.Resource;
 import com.foodrus.util.Constants.ServletAttribute;
 import com.foodrus.util.Constants.Url;
