@@ -19,6 +19,7 @@ public class CheckOutController implements Controller {
 		// request.getAttribute(User)
 		HttpSession session = request.getSession();
 		
+		
 		return null;
 	}
 

@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.foodrus.control.Controller;
 import com.foodrus.util.Constants.Resource;
@@ -54,13 +55,16 @@ public class DispatcherServlet extends HttpServlet {
 	private void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException{
 		// *** parse the requested resource URI
-		String uri = this.parseResources(request.getRequestURL().toString());
+		String url = request.getRequestURL().toString();
+		HttpSession session = request.getSession();
+		String uri = this.parseResources(url);
 		System.out.println("Requested URI >>> " + uri);
 		// *** get the Controller for that resource
 		Controller controller = Resource.RESOURCE_MAP.get(uri);
 		String target = (controller != null) ? controller.handleRequest(request, response) : ViewPath.HOME;
+		// *** set home as default last visited
 		if(target != null){
-			request.getSession().setAttribute(ServletAttribute.LASTVISITED, target);
+			session.setAttribute(ServletAttribute.LASTVISITED, url);
 			request.setAttribute(ServletAttribute.TARGET, target);
 			request.getRequestDispatcher(ViewPath.DASH_BOARD).forward(request, response);
 		} else {

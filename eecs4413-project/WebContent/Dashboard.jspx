@@ -29,7 +29,7 @@
 
         <div id="navBar">
           <ul>
-            <li><a href="${contextPath}">Home Page</a></li>
+            <li><a href="${contextPath}/action/">Home Page</a></li>
             <li><a href="${contextPath}/action/browseCategories">Browse Categories</a></li>
           </ul>
           <div id="promotion">

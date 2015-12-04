@@ -32,14 +32,15 @@ public class LoginController implements Controller {
 					//successful login
 					
 					request.getSession().setAttribute(Constants.ServletAttribute.LOGGED_IN, user);
-					/** want to return to last visited, but this doesn't go through handle request
+					
 					String lastvisited = (String)request.getSession().getAttribute(Constants.ServletAttribute.LASTVISITED);
 					if (lastvisited != null){
-						return lastvisited;
-					} 
-					**/
-					return Constants.ViewPath.HOME;
-					
+						System.out.println("redirecting to " + lastvisited);
+						response.sendRedirect(lastvisited);
+						return null;
+					} else {
+						return Constants.ViewPath.HOME;
+					}
 				}
 			} catch (Exception e){
 				throw new ServletException(e);
