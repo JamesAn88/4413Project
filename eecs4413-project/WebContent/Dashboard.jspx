@@ -31,6 +31,7 @@
           <ul>
             <li><a href="${contextPath}/action/">Home Page</a></li>
             <li><a href="${contextPath}/action/browseCategories">Browse Categories</a></li>
+            <li><a href="${contextPath}/action/listitems">List Items</a></li>
           </ul>
           <div id="promotion">
             <marquee>Free Shipping over $100 purchase!</marquee>

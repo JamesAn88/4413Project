@@ -44,6 +44,7 @@ public class Constants {
 		public static final String CATEGORIES = "/Categories.jspx";
 		public static final String CHECK_OUT = "/Checkout.jspx";
 		public static final String SEARCH = "/Search.jspx";
+		public static final String ITEMS = "/Items.jspx";
 	}
 	
 	// *** URL constants

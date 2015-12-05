@@ -1,11 +1,13 @@
 package com.foodrus.control;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.foodrus.bean.vo.Item;
 import com.foodrus.dao.jdbp.ItemDao;
 import com.foodrus.util.Constants;
 
@@ -22,21 +24,24 @@ public class ListItemsController implements Controller {
 		String category = request.getParameter(Constants.ServletAttribute.CATEGORIES);
 		if (category != null){
 			try{
-				request.setAttribute("items", new ItemDao().getItemsByCatid(category));
+				request.setAttribute(Constants.ServletAttribute.ITEMS, new ItemDao().getItemsByCatid(category));
 			} catch (Exception e){
 				System.err.println("Could not retrieve Items from DAO: " + e.getMessage());
 				throw new ServletException(e);
 			}
+		} else {
+			try {
+				List<Item> allItems= new ItemDao().getAll();
+				request.setAttribute(Constants.ServletAttribute.ITEMS, allItems);
+			} catch (Exception e) {
+				System.err.println("Could not retrieve Items from DAO" + e.getMessage());
+				throw new ServletException(e);
+			}
 		}
-		/**
-		try {
-			request.setAttribute("items", new ItemDao().getAll());
-		} catch (SQLException | NamingException e) {
-			System.err.println("Could not retrieve Items from DAO");
-			throw new ServletException(e);
-		}
-		**/
-		return Constants.ViewPath.HOME;
+		
+		
+		
+		return Constants.ViewPath.ITEMS;
 	}
 
 }
