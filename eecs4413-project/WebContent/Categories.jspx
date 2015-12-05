@@ -23,7 +23,7 @@
             <tr>
               <td>${cat.name}</td>
               <td>${cat.description}</td>
-              <td><a href="/action/listitems?chosencat=${cat.id}">go to the category</a></td>
+              <td><a href="/action/listitems?chosencat=${cat.id}">Browse ${cat.name}</a></td>
             </tr>
           </c:forEach> 
         </c:if>
