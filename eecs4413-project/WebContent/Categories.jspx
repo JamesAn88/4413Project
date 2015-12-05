@@ -13,17 +13,12 @@
     <div>
       <h2>Please Choose your Category</h2>
       <TABLE>
-        <tr>
-          <td>Name</td>
-          <td>Description</td>
-          <td>Browse the Category</td>
-        </tr>
         <c:if test="${ not empty requestScope['com.foodrus.util.categories'] }">
           <c:forEach items="${requestScope['com.foodrus.util.categories']}" var="cat">
             <tr>
               <td>${cat.name}</td>
               <td>${cat.description}</td>
-              <td><a href="/action/listitems?chosencat=${cat.id}">Browse ${cat.name}</a></td>
+              <td><a href="${contextPath}/action//listitems?chosencat=${cat.id}">Browse ${cat.name}</a></td>
             </tr>
           </c:forEach> 
         </c:if>
