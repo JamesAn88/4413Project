@@ -88,5 +88,11 @@ public class Constants {
 	public static final class DAO{
 		public static final String JNDI_NAME = "java:/comp/env/jdbc/EECS";
 	}
+	
+	//** PO Constants
+	public static final class POConst{
+		public static final String PREFIX = "po";
+		public static final String SUFFIX = ".xml";
+	}
 
 }
