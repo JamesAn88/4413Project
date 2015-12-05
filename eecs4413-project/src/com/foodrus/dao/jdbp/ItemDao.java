@@ -21,6 +21,7 @@ public class ItemDao extends GenericDaoJdbc<Item> {
 	public static final String SELECT_ALL_ITEMS = "select * from roumani.item";
 	public static final String SELECT_ITEMS_WITH_KYEWORD = "select * from roumani.item "
 			+ "where upper(name) like upper(?)";
+	public static final String SELECT_ITEMS_BY_CAT = "select * from roumani.item where catid = ?";
 	
 	public static final RowMapper<Item> ITEM_ROW_MAPPER = new RowMapper<Item>(){
 		@Override
@@ -81,6 +82,20 @@ public class ItemDao extends GenericDaoJdbc<Item> {
 		}
 		Connection conn = getDataSource().getConnection();
 		List<Item> items = (List<Item>) DaoHelper.queryForList(SELECT_ITEMS_WITH_KYEWORD, 
+				params, conn, ITEM_ROW_MAPPER);
+		conn.close();
+		return items;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Item> getItemsByCatid(String catid) throws Exception{
+		Map<Integer, Object> params = new HashMap<>();
+		
+		if (catid != null){
+			params.put(1, new Integer(Integer.parseInt(catid)));
+		}
+		Connection conn = getDataSource().getConnection();
+		List<Item> items = (List<Item>) DaoHelper.queryForList(SELECT_ITEMS_BY_CAT, 
 				params, conn, ITEM_ROW_MAPPER);
 		conn.close();
 		return items;

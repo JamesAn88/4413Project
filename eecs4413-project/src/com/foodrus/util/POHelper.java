@@ -14,7 +14,7 @@ public class POHelper {
 		if (count < 10){
 			filePath = filePath + "0";
 		}
-		filePath = filePath + Integer.toString(count);
+		filePath = filePath + Integer.toString(count++);
 		filePath = filePath + Constants.POConst.SUFFIX;
 		return new File(userDir, filePath);
 	}
