@@ -50,7 +50,7 @@
         </div>
         
         <div id="footer">
-          <!-- <jsp:include page="Footer.jsp"></jsp:include> -->
+          <jsp:include page="Footer.jspx"></jsp:include>
         </div>
       </div>
     </body>

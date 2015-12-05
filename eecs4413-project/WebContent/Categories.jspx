@@ -11,19 +11,19 @@
     omit-xml-declaration="true" />
   <html xmlns="http://www.w3.org/1999/xhtml">
     <div>
-      <h2>Choose Category</h2>
-      <TABLE border="2">
+      <h2>Please Choose your Category</h2>
+      <TABLE>
         <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Description</th>
+          <td>Name</td>
+          <td>Description</td>
+          <td>Browse the Category</td>
         </tr>
         <c:if test="${ not empty requestScope['com.foodrus.util.categories'] }">
           <c:forEach items="${requestScope['com.foodrus.util.categories']}" var="cat">
             <tr>
-              <th>${cat.id}</th>
-              <th>${cat.name}</th>
-              <th>${cat.description}</th>
+              <td>${cat.name}</td>
+              <td>${cat.description}</td>
+              <td><a href="/action/listitems?chosencat=${cat.id}">Browse ${cat.name}</a></td>
             </tr>
           </c:forEach> 
         </c:if>

@@ -136,7 +136,7 @@ sup {
 	margin: 0 0 0 0;
     padding: 0;
     height: 28px;
-    width:20em;
+    width: 230px;
 }
 #search input[type="image"]
 {
@@ -144,7 +144,7 @@ sup {
     margin: 0 0 0 0;
     padding: 0;
     text-indent: -9999em;
-    width:30px;
+    width:35px;
 }
 
 #client-manager
