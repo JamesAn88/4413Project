@@ -34,6 +34,7 @@ public class Constants {
 		public static final String REDUCED_SHIPPING_CONTEXTPARAM = "REDUCEDSHIPPING";
 		public static final String SHIPPING_COST_CONTEXTPARAM = "SHIPPINGCOST";
 		public static final String WAIVE_CONTEXTPARAM = "SHIPPINGWAIVE";
+		public static final String CHOSEN_CAT = "chosencat";
 	}
 
 	// *** ServletAttributes constants
