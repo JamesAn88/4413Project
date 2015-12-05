@@ -17,15 +17,7 @@
           <th>ID</th>
           <th>Name</th>
         </tr>
-         <tr>
-          <th>Test1</th>
-          <th>Test2</th>
-        </tr>
         <c:if test="${ not empty requestScope['com.foodrus.util.items'] }">
-        	<tr>
-              <th>test</th>
-              <th>test</th>
-            </tr>
           <c:forEach items="${requestScope['com.foodrus.util.items']}" var="item">
             <tr>
               <th>${item.number}</th>

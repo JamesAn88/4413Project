@@ -24,7 +24,8 @@ public class ListItemsController implements Controller {
 		String category = request.getParameter(Constants.ServletAttribute.CHOSEN_CAT);
 		if (category != null){
 			try{
-				request.setAttribute(Constants.ServletAttribute.CATEGORIES, new ItemDao().getItemsByCatid(category));
+				List<Item> allItems= new ItemDao().getItemsByCatid(category);
+				request.setAttribute(Constants.ServletAttribute.ITEMS, allItems);
 			} catch (Exception e){
 				System.err.println("Could not retrieve Items from DAO: " + e.getMessage());
 				throw new ServletException(e);
