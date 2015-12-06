@@ -1,0 +1,48 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd" version="2.0">
+  <description>Food R Us custom tags</description>
+  <tlib-version>1.0</tlib-version>
+  <short-name>FoodRUs</short-name>
+  <!-- breadCrumb tag starts -->
+  <tag>
+    <description>Custom tag that shows BradCrumb navigation bar</description>
+    <name>bradCrumb</name>
+	<tag-class>com.foodrus.tags.BreadCrumbs</tag-class>
+	<body-content>empty</body-content>
+	<attribute>
+	  <name>crumbs</name>
+	  <required>true</required>
+	  <rtexprvalue>true</rtexprvalue>
+	  <type>com.foodrus.bean.CrumbDetail</type>
+	</attribute>
+  </tag>
+  <!-- breadCrumb tag ends -->
+  <!-- math tag starts -->
+  <tag>
+    <description>Custom tag that performs simple math operation: add, subtract, mult, div</description>
+    <name>math</name>
+	<tag-class>com.foodrus.tags.Math</tag-class>
+	<body-content>empty</body-content>
+	<attribute>
+	  <name>operand1</name>
+	  <required>true</required>
+	  <rtexprvalue>true</rtexprvalue>
+	  <type>java.lang.Double</type>
+	</attribute>
+	<attribute>
+	  <name>operand2</name>
+	  <required>true</required>
+	  <rtexprvalue>true</rtexprvalue>
+	  <type>java.lang.Double</type>
+	</attribute>
+	<attribute>
+	  <name>operation</name>
+	  <required>true</required>
+	  <rtexprvalue>true</rtexprvalue>
+	  <type>java.lang.String</type>
+	</attribute>
+  </tag>
+  <!-- math tag ends -->
+</taglib>

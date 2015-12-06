@@ -23,4 +23,8 @@
 		<param-name>REDUCEDSHIPPING</param-name>
 		<param-value>0.0</param-value>
 	</context-param>
+		<context-param>
+		<param-name>INTERVAL_TO_QUERY_CATEGORIES</param-name>
+		<param-value>3600</param-value>
+	</context-param>
 </web-app>

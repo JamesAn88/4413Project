@@ -6,17 +6,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class UpdateItemController implements Controller {
-
-	public UpdateItemController() {
-		super();
-	}
-
+public class LogOutController extends ControllerImpl {
 	@Override
-	public String handleRequest(HttpServletRequest request,
+	public View handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		return null;
+		request.getSession().invalidate();;
+		view.setPath(request.getServletContext().getContextPath());
+		view.setDispatchType(View.REDIRECT);
+		return view;
 	}
-
 }

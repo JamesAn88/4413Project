@@ -1,45 +1,39 @@
 package com.foodrus.control;
 
 import java.io.IOException;
-import java.util.List;
+import java.sql.SQLException;
 
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.foodrus.bean.vo.Item;
 import com.foodrus.dao.jdbp.ItemDao;
-import com.foodrus.util.Constants;
+import com.foodrus.util.Constants.ServletAttribute;
+import com.foodrus.util.Constants.ViewPath;
 
+public class ListItemsController extends ControllerImpl {
 
-public class ListItemsController implements Controller {
-
-	public ListItemsController() {
-		// TODO Auto-generated constructor stub
+	public ListItemsController(){
+		super();
+		view.setDispatchType(View.INCLUDE);
+		view.setPath(ViewPath.HOME);
 	}
-
 	@Override
-	public String handleRequest(HttpServletRequest request,
+	public View handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String category = request.getParameter(Constants.ServletAttribute.CHOSEN_CAT);
-		if (category != null){
-			try{
-				List<Item> allItems= new ItemDao().getItemsByCatid(category);
-				request.setAttribute(Constants.ServletAttribute.ITEMS, allItems);
-			} catch (Exception e){
-				System.err.println("Could not retrieve Items from DAO: " + e.getMessage());
-				throw new ServletException(e);
-			}
-		} else {
+		String catId = request.getParameter("catId");
+		String categoryName = request.getParameter("catName");
+		categoryName = (categoryName == null) ? "Items" : categoryName;
+		if(catId != null){
 			try {
-				List<Item> allItems= new ItemDao().getAll();
-				request.setAttribute(Constants.ServletAttribute.ITEMS, allItems);
-			} catch (Exception e) {
-				System.err.println("Could not retrieve Items from DAO" + e.getMessage());
-				throw new ServletException(e);
+				request.setAttribute(ServletAttribute.ITEMS, new ItemDao().getItemsByCategory(catId));
+				view.setPath(ViewPath.ITEMS);
+			} catch (SQLException | NamingException e) {
+				throw new ServletException("Could not retrieve Items from DAO", e);
 			}
-		}
-		return Constants.ViewPath.ITEMS;
+			addTailCrumb(request, this.getRequstedUrl(request), categoryName);
+		} 
+		return view;
 	}
-
 }

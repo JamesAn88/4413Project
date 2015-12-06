@@ -19,9 +19,9 @@ public class ItemDao extends GenericDaoJdbc<Item> {
 	// *** fields used by this DAO
 	public static final String SELECT_ITEM_BY_ID = "select * from roumani.item where number = ?";
 	public static final String SELECT_ALL_ITEMS = "select * from roumani.item";
+	public static final String SELECT_ITEMS_BY_CATEG_ID = "select * from roumani.item where catId = ?";
 	public static final String SELECT_ITEMS_WITH_KYEWORD = "select * from roumani.item "
 			+ "where upper(name) like upper(?)";
-	public static final String SELECT_ITEMS_BY_CAT = "select * from roumani.item where catid = ?";
 	
 	public static final RowMapper<Item> ITEM_ROW_MAPPER = new RowMapper<Item>(){
 		@Override
@@ -86,16 +86,20 @@ public class ItemDao extends GenericDaoJdbc<Item> {
 		conn.close();
 		return items;
 	}
-	
+
+	/**
+	 * get all items by category id
+	 * @param catId
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
-	public List<Item> getItemsByCatid(String catid) throws Exception{
+	public List<Item> getItemsByCategory(String catId) throws SQLException{
 		Map<Integer, Object> params = new HashMap<>();
-		
-		if (catid != null){
-			params.put(1, new Integer(Integer.parseInt(catid)));
+		if(catId != null){
+			params.put(1, catId);
 		}
 		Connection conn = getDataSource().getConnection();
-		List<Item> items = (List<Item>) DaoHelper.queryForList(SELECT_ITEMS_BY_CAT, 
+		List<Item> items = (List<Item>) DaoHelper.queryForList(SELECT_ITEMS_BY_CATEG_ID, 
 				params, conn, ITEM_ROW_MAPPER);
 		conn.close();
 		return items;

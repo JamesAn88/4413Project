@@ -7,10 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.foodrus.control.Controller;
-import com.foodrus.util.Constants;
+import com.foodrus.control.ControllerImpl;
+import com.foodrus.control.View;
 import com.foodrus.util.Constants.Resource;
 import com.foodrus.util.Constants.ServletAttribute;
 import com.foodrus.util.Constants.Url;
@@ -31,7 +30,7 @@ import com.foodrus.util.Constants.ViewPath;
 @WebServlet(urlPatterns={"/action/*", "/Action/*"})
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+   
     /**
      * instantiate a request dispatcher that dispatches
      * requests based on the URL
@@ -54,23 +53,30 @@ public class DispatcherServlet extends HttpServlet {
     
     // *** process POST/GET requests
 	private void processRequest(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException{
+			HttpServletResponse response) throws ServletException, IOException {
 		// *** parse the requested resource URI
-		String url = request.getRequestURL().toString();
-		HttpSession session = request.getSession();
-		String uri = this.parseResources(url);
-		System.out.println("Requested URI >>> " + uri);
+		String resource = this.parseResources(request.getRequestURI());
 		// *** get the Controller for that resource
-		Controller controller = Resource.RESOURCE_MAP.get(uri);
-		String target = (controller != null) ? controller.handleRequest(request, response) : ViewPath.HOME;
-		// *** set home as default last visited
+		ControllerImpl controller = (ControllerImpl)Resource.RESOURCE_MAP.get(resource);
+		View target = (controller != null) ? controller.handleRequest(request, response) : 
+			new View(ViewPath.HOME, View.INCLUDE);
+		// *** dispatch the request to target
 		if(target != null){
-			session.setAttribute(ServletAttribute.LASTVISITED, url);
-			session.setAttribute(ServletAttribute.LAST_QUERY_STRING, request.getQueryString());
-			request.setAttribute(ServletAttribute.TARGET, target);
-			request.getRequestDispatcher(ViewPath.DASH_BOARD).forward(request, response);
-		} else {
-			System.out.println("Controller ["+controller.getClass().getName()+"] returned [null] as View");
+			switch(target.getDispatchType()){
+			  // include the target to the Dashboard 
+			  case View.INCLUDE:
+				request.setAttribute(ServletAttribute.TARGET, target.getPath());
+				request.getRequestDispatcher(ViewPath.DASH_BOARD).forward(request, response);
+			  break;
+			  // forward the request
+			  case View.FORWARD:
+				request.getRequestDispatcher(target.getPath()).forward(request, response);
+			  break;
+			  // redirect the request
+			  case View.REDIRECT:
+				response.sendRedirect(target.getPath());
+			  break;
+			}
 		}
 	}
 

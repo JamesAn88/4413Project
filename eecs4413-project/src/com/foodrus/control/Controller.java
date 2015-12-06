@@ -15,6 +15,6 @@ public interface Controller {
 	 * @param response
 	 * @return the target view for the request to be forwarded
 	 */
-	String handleRequest(HttpServletRequest request, HttpServletResponse response)
+	View handleRequest(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException;
 }

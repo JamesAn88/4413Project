@@ -1,3 +1,21 @@
+
+div.table 
+{
+    display:table;
+    border-collapse: collapse;
+}
+form.tr, div.tr
+{
+    display:table-row;
+   	border: 1px solid #000;
+}
+span.td
+{
+    display:table-cell;
+    border: 1px solid #000;
+    padding:1em;
+}
+
 legend {
 	font-size: 90%;
 	padding-left: 1em;

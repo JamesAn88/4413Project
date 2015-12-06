@@ -19,6 +19,13 @@ public class Item implements DomainBean {
 
 	
 	public Item() {
+		super();
+	}
+
+	// *** Convent constructor for validation
+	public Item(String number) {
+		super();
+		this.number = number;
 	}
 
 

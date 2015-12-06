@@ -10,7 +10,13 @@
     omit-xml-declaration="true" />
   <html xmlns="http://www.w3.org/1999/xhtml">
   
-   <!-- Fill in the body/fragment here  -->
-  
+  <c:if test="${not empty requestScope['com.foodrus.util.errors'] }">
+    <h3>Validation Errors: </h3>
+    <ul calss="errors">
+      <c:forEach items="${requestScope['com.foodrus.util.errors'] }" var="error">
+        <li> ${error} </li>
+      </c:forEach>
+    </ul>
+  </c:if>
   </html>
 </jsp:root>

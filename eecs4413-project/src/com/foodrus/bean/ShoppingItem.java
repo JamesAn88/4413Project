@@ -25,6 +25,11 @@ public class ShoppingItem implements DomainBean, Comparator<ShoppingItem> {
 		this.item = item;
 	}
 
+	public ShoppingItem(String qty) {
+		super();
+		this.qty = qty;
+	}
+
 
 	public Item getItem() {
 		return item;

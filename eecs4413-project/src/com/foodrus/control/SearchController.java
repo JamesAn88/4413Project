@@ -2,6 +2,7 @@ package com.foodrus.control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -12,22 +13,28 @@ import com.foodrus.dao.jdbp.ItemDao;
 import com.foodrus.util.Constants.ServletAttribute;
 import com.foodrus.util.Constants.ViewPath;
 
-public class SearchController implements Controller {
+public class SearchController extends ControllerImpl {
 
 	public SearchController() {
-		// TODO Auto-generated constructor stub
+		super();
+		view.setDispatchType(View.INCLUDE);
 	}
 
 	@Override
-	public String handleRequest(HttpServletRequest request,
+	public View handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String view = ViewPath.HOME;
 		String keyword = request.getParameter("searchText");
 		if(keyword != null && !keyword.trim().isEmpty()){
 			try {
-				request.setAttribute(ServletAttribute.SEARCH_RESULT,
-						(new ItemDao()).getItemsWithKeyWord(keyword));
-				view = ViewPath.SEARCH;
+				List<?> result = (new ItemDao()).getItemsWithKeyWord(keyword);
+				if(result.isEmpty()){
+					request.setAttribute("notFound", "No Result were found for ["+
+							request.getParameter("searchText")+"]");
+				} else {
+					request.setAttribute(ServletAttribute.ITEMS, result);
+				}
+				view.setPath(ViewPath.ITEMS);
+				addTailCrumb(request, this.getRequstedUrl(request), "Result for ["+keyword+"]");
 			} catch (NamingException | SQLException e) {
 				throw new ServletException("Dao Exception was thrown", e);
 			}

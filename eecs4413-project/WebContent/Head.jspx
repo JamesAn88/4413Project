@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+xmlns:c="http://java.sun.com/jsp/jstl/core"
 xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
   <jsp:directive.page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true" />
@@ -10,7 +11,7 @@ xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
   <html xmlns="http://www.w3.org/1999/xhtml">
     <div id="headerSection">
       <div id="mainLogo">
-        <a href="${contextPath}"><img src="${contextPath}/res/img/logo4.png"/></a>
+        <a href="${contextPath}/action/home"><img src="${contextPath}/res/img/logo4.png"/></a>
       </div>
       <div id="search">
         <form action="${contextPath}/action/search" method="post">
@@ -21,14 +22,27 @@ xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
       <section id="client-manager">
         <div id="admin">
           <ul>
-            <li><a href="${contextPath}/action/login">Login</a></li>
+            <c:if test="${empty sessionScope['com.foodrus.util.loggedIn'].account}">
+              <li><a href="${contextPath}/action/login"></a>Login</li>
+            </c:if>
+            <c:if test="${not empty sessionScope['com.foodrus.util.loggedIn'].account}">
+              <li>${sessionScope['com.foodrus.util.loggedIn'].account}</li>
+              <li><a href="${contextPath}/action/logout">Log out</a></li>
+            </c:if>
+            
             <li><a href="#">My Account</a></li>
           </ul>
         </div>
         <br />
         <div id="cart">
-          <a href="${contextPath}/action/showCart"><img src="${contextPath}/res/img/cart.png" alt="Shopping Cart"/></a>
-          <span>${sessionScope['com.foodrus.util.cart'].itemCount} items <fmt:formatNumber value="${sessionScope['com.foodrus.util.cart'].subTotal}" type="currency"/></span>
+          <a href="${contextPath}/action/showCart">
+            <img src="${contextPath}/res/img/cart.png" alt="Shopping Cart"/>
+          </a>
+          <span>
+            ${sessionScope['com.foodrus.util.cart'].totalItems} 
+            items 
+            <fmt:formatNumber value="${sessionScope['com.foodrus.util.cart'].totalPriceBeforeTax}" type="currency"/>
+          </span>
         </div>
       </section>
     </div>

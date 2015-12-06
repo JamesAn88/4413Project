@@ -5,15 +5,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.foodrus.util.Constants.ViewPath;
 
-public class HomeController implements Controller {
+public class HomeController extends ControllerImpl {
 
 	public HomeController() {
-		// TODO Auto-generated constructor stub
+		super();
+		view.setDispatchType(View.INCLUDE);
+		view.setPath(ViewPath.HOME);
 	}
 
 	@Override
-	public String handleRequest(HttpServletRequest request,
+	public View handleRequest(HttpServletRequest request,
 			HttpServletResponse response) {
-		return ViewPath.HOME;
+		this.addTailCrumb(request, this.getRequstedUrl(request), "Home");
+		return view;
 	}
 }
