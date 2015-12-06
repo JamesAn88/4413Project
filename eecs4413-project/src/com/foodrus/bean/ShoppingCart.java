@@ -12,6 +12,8 @@ public class ShoppingCart implements DomainBean{
 	private static final long serialVersionUID = 7421082833333095713L;
 
 	private Set<ShoppingItem> items;
+	private int itemCount;
+	private double subTotal;
 	
 	public ShoppingCart() {
 		super();
@@ -25,24 +27,32 @@ public class ShoppingCart implements DomainBean{
 		} else if(shoppingItem != null){
 			this.items.add(shoppingItem);
 		}
+		itemCount = getTotalItems();
+		subTotal = getTotalPriceBeforeTax();
 	}
 
 	public void updateItem(ShoppingItem shoppingItem){
 		if(shoppingItem != null){
 			removeItem(shoppingItem);
 			this.items.add(shoppingItem);
+			itemCount = getTotalItems();
+			subTotal = getTotalPriceBeforeTax();
 		}
 	}
 
 	public void removeItem(ShoppingItem shoppingItem) {
 		if(shoppingItem != null){
 			this.items.remove(shoppingItem);
+			itemCount = getTotalItems();
+			subTotal = getTotalPriceBeforeTax();
 		}
 	}
 
 	public void removeItem(Item item) {
 		if(item !=null){
 			this.removeItem(new ShoppingItem(item));
+			itemCount = getTotalItems();
+			subTotal = getTotalPriceBeforeTax();
 		}
 	}
 
@@ -51,11 +61,15 @@ public class ShoppingCart implements DomainBean{
 			Item item = new Item();
 			item.setNumber(itemId);
 			this.removeItem(item);
+			itemCount = getTotalItems();
+			subTotal = getTotalPriceBeforeTax();
 		}
 	}
 
 	public void emptyCart(){
 		items.clear();
+		itemCount = getTotalItems();
+		subTotal = getTotalPriceBeforeTax();
 	}
 	
 	public Set<ShoppingItem> getItems() {
@@ -106,4 +120,13 @@ public class ShoppingCart implements DomainBean{
 		sb.append("]");
 		return  sb.toString();
 	}
+
+	public int getItemCount() {
+		return itemCount;
+	}
+
+	public double getSubTotal() {
+		return subTotal;
+	}
+
 }
