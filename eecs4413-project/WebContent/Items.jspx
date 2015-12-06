@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!-- Categories.jspx starts  -->
 <jsp:root version="2.0" xmlns:jsp="http://java.sun.com/JSP/Page"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 	<jsp:directive.page contentType="text/html; charset=UTF-8"
 		pageEncoding="UTF-8" session="false" />
 	<jsp:output doctype-root-element="html"
@@ -29,7 +30,7 @@
 				<label id="itemqperunit"> Quantity per Unit: ${item.unit}
 				</label>
 				<br/>
-				<lable id="itemprice">Unit price:  ${item.price}</lable>
+				<lable id="itemprice">Unit price: <fmt:formatNumber value="${item.price}" type="currency"/></lable>
 				<form action="" method="GET">
 					<input type="hidden" id="itemid" name="chosenitem" value="${item.number}" />
 					<span id="purchasetext">Quanity to purchase:</span>
