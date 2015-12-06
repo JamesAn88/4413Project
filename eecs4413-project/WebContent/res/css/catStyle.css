@@ -37,9 +37,30 @@ table td
 	color: green;
 }
 
+#itemDisplay
+{
+	box-sizing: border-box;
+	position: relative;
+	padding-bottom: 30px;
+	bottom: -10px;
+	overflow: auto;
+}
+
+#itemform
+{
+	
+	width: 28%;
+	float: left;
+	padding: 20px;
+	border: 1px solid grey;
+	overflow:hidden;
+	height: 180px;
+}
+
 #itemTable
 {
 	padding-left: 50px;
+	width: 100%;
 }
 #itemTable td {
 	color: #ffe6cc;
@@ -57,6 +78,7 @@ table td
  	color: Green;
 	font-weight: bold;
 	font-size: 18px;
+	font-family: "Times New Roman", Georgia, Serif;
  }
 
 

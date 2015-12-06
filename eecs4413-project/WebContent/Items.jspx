@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <jsp:root  version="2.0" 
     xmlns:jsp="http://java.sun.com/JSP/Page" 
-    xmlns:c="http://java.sun.com/jsp/jstl/core">
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
   <jsp:directive.page contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" />
   <jsp:output doctype-root-element="html"
@@ -17,19 +18,21 @@
   <body>
     <div>
       <h2>Items</h2>
+       <div id="itemDisplay">
       <c:if test="${ not empty requestScope['notFound'] }">
         <span><p>${requestScope['notFound']}</p></span>
       </c:if>
       <c:if test="${ not empty requestScope['com.foodrus.util.items'] }">
         <c:forEach items="${requestScope['com.foodrus.util.items']}" var="item">
-          <form method="post" action="${contextPath}/action/addItem">
+          <form id="itemform" method="post" action="${contextPath}/action/addItem">
             <input type="hidden" name="itemNumber" value="${item.number}"/>
+           
             <TABLE id="itemTable">
               <tr>  
                 <td><span>${item.name}</span></td>
               </tr>
               <tr>  
-                <td><span><label>Price:</label>${item.price}</span></td>
+                <td><span><label>Price:</label><fmt:formatNumber value="${item.price}" type="currency"/></span></td>
               </tr>
 
               <tr>  
@@ -56,9 +59,9 @@
               </tr>
             </TABLE>
           </form>
-          <hr size="2" width="700px" align="left"/>
         </c:forEach>
       </c:if>
+      </div>
     </div>
     </body>
   </html>

@@ -11,7 +11,13 @@
     doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
     omit-xml-declaration="true" />
   <html xmlns="http://www.w3.org/1999/xhtml">
+  
     <fmt:setLocale value="en_us"/>
+    
+    <head><link rel="StyleSheet"
+        href="${contextPath}/res/css/catStyle.css"
+        type="text/css" title="eecs4413" media="screen, print" />
+  </head>
     <h2>Shopping Cart</h2>
     <div class="table">
       <div class="tr">
