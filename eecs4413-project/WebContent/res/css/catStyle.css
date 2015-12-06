@@ -1,58 +1,79 @@
 /*category style*/
-#catTable
-{
-	background-color:#ffe5cc;
-	width:100%;
-	
+
+
+#catform {
+	width: 25%;
+	float: left;
+	padding: 40px;
+	border: 1px solid grey;
+	text-align: center;
 }
 
-#catTable td
+table td
 {
+	font: "gill-ss-std",Verdana,Geneva,sans-serif;
+	font-weight: bold;
+}
+#catDisplay
+ {
+	box-sizing: border-box;
+
+	position: relative;
+	height: 700px;
+	padding-bottom: 30px;
+	bottom: -10px;
+}
+
+#catTable {
+	background-color: #ffe5cc;
+	width: 100%;
+}
+
+#catTable td {
 	height: 50px;
 }
 
-#catTable td a
-{
+#catTable td a {
 	color: green;
-	
 }
 
-#itemname
+#itemTable
 {
-	color:green;
+	padding-left: 50px;
+}
+#itemTable td {
+	color: #ffe6cc;
+	font-size: 12px;
+	font-family: "Century Gothic", "Times New Roman", Times, serif;
+}
+#itemTable td label
+{
+	color: #ffe6cc;
+	font-size: 12px;
+	font-family: "Century Gothic", "Times New Roman", Times, serif;
+}
+ #itemTable td span
+ {
+ 	color: Green;
+	font-weight: bold;
+	font-size: 18px;
+ }
+
+
+#itemprice {
+	color: #ffe6cc;
 	font-weight: bold;
 }
 
-#itemnumber
-{
-	color:#ffe6cc;
-	font-size: 12px;
-	font-family: "Century Gothic","Times New Roman",Times,serif;
-}
-
-#itemqperunit
-{
-	color:#ffe6cc;
-	font-size: 12px;
-	font-family: "Century Gothic","Times New Roman",Times,serif;
-}
-
-#itemprice
-{
-	color:#ffe6cc;
-	font-weight: bold;
-}
-#quantity
-{
+#quantity {
 	width: 40px;
 }
 
-#purchasetext
-{
-	color:#ffffcc;
+#purchasetext {
+	color: #ffffcc;
 	font-weight: bold;
 }
-#addcart
-{
+
+#addcart {
 	padding-left: 5px;
 }

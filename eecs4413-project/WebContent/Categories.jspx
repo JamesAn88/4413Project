@@ -10,14 +10,19 @@
     doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
     omit-xml-declaration="true" />
   <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+   <link rel="StyleSheet"
+        href="${contextPath}/res/css/catStyle.css"
+        type="text/css" title="eecs4413" media="screen, print" />
+  </head>
     <h2>Choose Category</h2>
-    <div>
+    <div id="catDisplay">
       <c:if test="${ not empty requestScope['com.foodrus.util.categories'] }">
         <c:forEach items="${requestScope['com.foodrus.util.categories']}" var="cat">
-          <form method="post" action="${contextPath}/action/listItems" align="left">
+          <form id="catform" method="post" action="${contextPath}/action/listItems" align="left">
             <input type="hidden" name="catId" value="${cat.id}" />
             <input type="hidden" name="catName" value="${cat.name}" />
-            <TABLE>
+            <TABLE id="catTable">
               <tr>
                 <td><input type="image" src="${contextPath}/res/img/${cat.id}"/></td>
               </tr>
@@ -29,7 +34,6 @@
               </tr>
             </TABLE>
           </form>
-          <hr size="2" width="600px" align="left"/>
         </c:forEach> 
       </c:if>
     </div>    

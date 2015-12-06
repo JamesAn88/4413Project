@@ -9,6 +9,12 @@
     doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
     omit-xml-declaration="true" />
   <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  <link rel="StyleSheet"
+        href="${contextPath}/res/css/catStyle.css"
+        type="text/css" title="eecs4413" media="screen, print" />
+  </head>
+  <body>
     <div>
       <h2>Items</h2>
       <c:if test="${ not empty requestScope['notFound'] }">
@@ -18,25 +24,27 @@
         <c:forEach items="${requestScope['com.foodrus.util.items']}" var="item">
           <form method="post" action="${contextPath}/action/addItem">
             <input type="hidden" name="itemNumber" value="${item.number}"/>
-            <TABLE>
+            <TABLE id="itemTable">
               <tr>  
-                <td>${item.name}</td>
+                <td><span>${item.name}</span></td>
               </tr>
               <tr>  
-                <td><label>Price:</label>${item.price}</td>
+                <td><span><label>Price:</label>${item.price}</span></td>
+              </tr>
+
+              <tr>  
+                <td><label>Item Number:</label>  ${item.number}</td>
               </tr>
               <tr>  
-                <td><label>Item Number:</label>${item.number}</td>
+                <td><label>Units per order:</label>  ${item.unit}</td>
               </tr>
               <tr>  
-                <td><label>Units per order:</label>${item.unit}</td>
+                <td><label>Available Quantity:</label> ${item.qty}</td>
               </tr>
+
               <tr>  
-                <td><label>Available Quantity:</label>${item.qty}</td>
-              </tr>
-              <tr>  
-                <td>
-                  <label>Quantity:</label> 
+                <td><span>
+                  Quantity:</span>
                   <input type="text" 
                          name="quantity" 
                          id="quantity" 
@@ -52,5 +60,6 @@
         </c:forEach>
       </c:if>
     </div>
+    </body>
   </html>
 </jsp:root>
