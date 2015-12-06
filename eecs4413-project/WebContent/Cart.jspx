@@ -55,7 +55,8 @@
           operation="mult"/>
       </c:set>
       <c:set var="shippingCost" scope="page">
-        ${sessionScope['com.foodrus.util.cart'].totalPriceBeforeTax > 100 ? 0 : initParam['SHIPPINGCOST']}
+        ${sessionScope['com.foodrus.util.cart'].totalPriceBeforeTax > initParam['SHIPPINGWAIVE'] ? 0 
+          : initParam['SHIPPINGCOST']}
       </c:set>
       <c:set var="taxesAndShipping" scope="page">
         <food:math operation="add" 
