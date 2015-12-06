@@ -11,8 +11,12 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.foodrus.servlet.DispatcherServlet;
+import com.foodrus.util.Constants.Resource;
+import com.foodrus.util.Constants.ServletAttribute;
+import com.foodrus.util.Constants.ViewPath;
 
 /**
  * Servlet Filter implementation class SecurityFilter
@@ -44,8 +48,15 @@ public class SecurityFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		System.out.println("Filter >>>>>>> " + DispatcherServlet.parseResources(httpRequest.getRequestURI()));
-		chain.doFilter(request, response);
+		HttpSession session = httpRequest.getSession();
+		Boolean isLoggedIn = (Boolean)session.getAttribute(ServletAttribute.LOGGED_IN);
+		if(Resource.CHECK_OUT.equals(DispatcherServlet.parseResources(httpRequest.getRequestURI()))){
+			if(isLoggedIn == null || !isLoggedIn){
+				request.getRequestDispatcher(ViewPath.LOGIN).forward(request, response);
+			}
+		} else {
+			chain.doFilter(request, response);
+		}
 	}
 
 	/**

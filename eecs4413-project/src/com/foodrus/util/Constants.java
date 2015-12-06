@@ -53,6 +53,7 @@ public class Constants {
 		public static final String ITEMS = "/Items.jspx";
 		public static final String PURCHASE_ORDERS_DIR = "/WEB-INF/purchaseOrders";
 		public static final String IMAGES_DIR = "/res/img";
+		public static final String LOGIN = "/action/login";
 	}
 	
 	// *** URL constants
@@ -62,8 +63,8 @@ public class Constants {
 
 	// *** Resource constants
 	public static final class Resource {
+		public static final String CHECK_OUT = "checkout"; //used by filter
 		private static final String LOGIN = "login";
-		private static final String CHECK_OUT = "checkout";
 		private static final String LOGOUT = "logout";
 		private static final String HOME = "home";
 		private static final String ADD_ITEM = "additem";
