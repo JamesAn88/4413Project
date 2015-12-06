@@ -1,0 +1,8 @@
+SSLRequireSSL
+AuthType Basic
+AuthName "~cse31008/www"
+AuthBasicProvider pam
+AuthzUnixgroup on
+AuthzUnixgroupAuthoritative off
+AuthzGroupFileAuthoritative off
+require valid-user
