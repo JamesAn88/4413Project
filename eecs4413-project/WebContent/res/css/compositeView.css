@@ -85,6 +85,8 @@ h1
 	padding: 10px;
 	margin:0 auto;
 	background:  #ffa64d;
+	height: auto;
+overflow: auto;
 }
 
 h2 

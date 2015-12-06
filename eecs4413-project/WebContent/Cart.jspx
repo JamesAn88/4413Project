@@ -74,7 +74,7 @@
           operand1=" ${sessionScope['com.foodrus.util.cart'].totalPriceBeforeTax }" 
           operand2="${taxesAndShipping}"/>
       </c:set>
-      <div align="left">
+      <div id="total">
         <TABLE>
           <tr>
             <td><LABEL>Sub Total:</LABEL></td>
@@ -117,10 +117,11 @@
       </div>
       
       <!-- Check out & Continue shopping Section -->
-      <div style="margin: 0 auto; width:600px;">
+      <div id="checkoutSection" >
           <form action="${contextPath}/action/checkOut">
             <input type="submit" name="checkOut" id="checkOut"  value="Check Out" />
           </form>
+          <label>----Or----</label>
           <form action="${contextPath}/action/continueShopping">
             <input type="submit" name="continueShopping" id="continueShopping" value="Continue Shopping" />
           </form>
