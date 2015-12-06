@@ -109,6 +109,16 @@
           </tr>
         </TABLE>
       </div>
+      
+      <!-- Check out & Continue shopping Section -->
+      <div style="margin: 0 auto; width:600px;">
+          <form action="${contextPath}/action/checkOut">
+            <input type="submit" name="checkOut" id="checkOut"  value="Check Out" />
+          </form>
+          <form action="${contextPath}/action/continueShopping">
+            <input type="submit" name="continueShopping" id="continueShopping" value="Continue Shopping" />
+          </form>
+      </div>
     </c:if>
   </html>
 </jsp:root>

@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
 
 import com.foodrus.bean.CrumbDetail;
@@ -32,8 +33,10 @@ public class LoginController extends ControllerImpl {
 				System.out.println("hashed = " + hashed);
 				if (hash.equalsIgnoreCase(hashed)){
 					//successful login
-					UserProfile profile = (UserProfile)request.getSession().
-							getAttribute(ServletAttribute.LOGGED_IN);
+					HttpSession session = request.getSession();
+					UserProfile profile = (UserProfile)session.
+							getAttribute(ServletAttribute.USER_PROFILE);
+					session.setAttribute(ServletAttribute.LOGGED_IN, Boolean.TRUE);
 					//profile.setName here
 					profile.setAccount(user);
 					profile.setUserName(user);

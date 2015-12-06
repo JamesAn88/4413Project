@@ -27,17 +27,14 @@ public class POHelper {
 		return userDir;
 	}
 	
-	public static boolean createPO(OrderType order, String poDir) throws Exception{
+	public static File createPO(OrderType order, String poDir) throws Exception{
 		boolean success = false;
 		JAXBContext jc = JAXBContext.newInstance(order.getClass());
 		Marshaller marsh = jc.createMarshaller();
 		File userDir = getUserDir(order.getCustomer().getAccount(), poDir);
 		File poFile = getPOFile(userDir);
 		marsh.marshal(order, poFile);
-		if (poFile.exists() && poFile.isFile()){
-			success = true;
-		}
-		return success;
+		success = poFile.exists() && poFile.isFile();
+		return (success) ? poFile : null;
 	}
-
 }

@@ -18,8 +18,8 @@ public class Constants {
 		
 		public static final String TARGET = "com.foodrus.util.target";
 		public static final String CART = "com.foodrus.util.cart";
+		public static final String USER_PROFILE = "com.foodrus.util.userProfile";
 		public static final String LOGGED_IN = "com.foodrus.util.loggedIn";
-		public static final String LOGGED_OUT = "com.foodrus.util.loggedOut";
 		public static final String CATEGORIES = "com.foodrus.util.categories";
 		public static final String ITEMS = "com.foodrus.util.items";
 		public static final String SEARCH_RESULT = "com.foodrus.util.searchResult";
@@ -51,6 +51,8 @@ public class Constants {
 		public static final String CHECK_OUT = "/Checkout.jspx";
 		public static final String SEARCH = "/Search.jspx";
 		public static final String ITEMS = "/Items.jspx";
+		public static final String PURCHASE_ORDERS_DIR = "/WEB-INF/purchaseOrders";
+		public static final String IMAGES_DIR = "/res/img";
 	}
 	
 	// *** URL constants
@@ -61,10 +63,10 @@ public class Constants {
 	// *** Resource constants
 	public static final class Resource {
 		private static final String LOGIN = "login";
+		private static final String CHECK_OUT = "checkout";
 		private static final String LOGOUT = "logout";
 		private static final String HOME = "home";
 		private static final String ADD_ITEM = "additem";
-		private static final String CHECK_OUT = "checkout";
 		private static final String SEARCH = "search";
 		private static final String BROWSE_CATEGORIES = "browsecategories";
 		private static final String LIST_ITEMS = "listitems";
@@ -84,7 +86,7 @@ public class Constants {
 		
 		public static final Map<String, Controller> RESOURCE_MAP = Collections.unmodifiableMap(res_map);
 	}
-	
+
 	// *** HTTP methods names
 	public static final class HttpMethod{
 		public static final String GET = "GET";

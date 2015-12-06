@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	version="3.1">
-	<display-name>Food R Us</display-name>
-	<welcome-file-list>
-		<welcome-file>/Dashboard.jspx</welcome-file>
-	</welcome-file-list>
-	<context-param>
-		<param-name>HST</param-name>
-		<param-value>0.13</param-value>
-	</context-param>
-	<context-param>
-		<param-name>SHIPPINGCOST</param-name>
-		<param-value>5.00</param-value>
-	</context-param>
-	<context-param>
-		<param-name>SHIPPINGWAIVE</param-name>
-		<param-value>100.00</param-value>
-	</context-param>
-	<context-param>
-		<param-name>REDUCEDSHIPPING</param-name>
-		<param-value>0.0</param-value>
-	</context-param>
-		<context-param>
-		<param-name>INTERVAL_TO_QUERY_CATEGORIES</param-name>
-		<param-value>3600</param-value>
-	</context-param>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>Food R Us</display-name>
+  <welcome-file-list>
+    <welcome-file>/Dashboard.jspx</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>HST</param-name>
+    <param-value>0.13</param-value>
+  </context-param>
+  <context-param>
+    <param-name>SHIPPINGCOST</param-name>
+    <param-value>5.00</param-value>
+  </context-param>
+  <context-param>
+    <param-name>SHIPPINGWAIVE</param-name>
+    <param-value>100.00</param-value>
+  </context-param>
+  <context-param>
+    <param-name>REDUCEDSHIPPING</param-name>
+    <param-value>0.0</param-value>
+  </context-param>
+  <context-param>
+    <param-name>INTERVAL_TO_QUERY_CATEGORIES</param-name>
+    <param-value>3600</param-value>
+  </context-param>
 </web-app>

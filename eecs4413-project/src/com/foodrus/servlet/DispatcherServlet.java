@@ -27,7 +27,8 @@ import com.foodrus.util.Constants.ViewPath;
  *          if the controller returns <code>null</code> then do nothing.
  * @author Uthman
  */
-@WebServlet(urlPatterns={"/action/*", "/Action/*"})
+@WebServlet(urlPatterns={"/action/*", "/Action/*"},
+		name="DispatcherServlet")
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
@@ -55,7 +56,7 @@ public class DispatcherServlet extends HttpServlet {
 	private void processRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// *** parse the requested resource URI
-		String resource = this.parseResources(request.getRequestURI());
+		String resource = parseResources(request.getRequestURI());
 		// *** get the Controller for that resource
 		ControllerImpl controller = (ControllerImpl)Resource.RESOURCE_MAP.get(resource);
 		View target = (controller != null) ? controller.handleRequest(request, response) : 
@@ -81,7 +82,7 @@ public class DispatcherServlet extends HttpServlet {
 	}
 
 	// *** helper method that parse the requested resource from the requested URI
-	private String parseResources(String uri) {
+	public static String parseResources(String uri) {
 		String resource = null;
 		if(uri != null){
 			int lastIndex = uri.lastIndexOf(Url.SEPARATOR) + 1;

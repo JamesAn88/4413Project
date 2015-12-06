@@ -34,7 +34,7 @@ public class SessionListener implements HttpSessionListener {
 		System.out.println(breadCrumb);
 		
 		// *** userProfile attribute
-		session.setAttribute(ServletAttribute.LOGGED_IN, new UserProfile());
+		session.setAttribute(ServletAttribute.USER_PROFILE, new UserProfile());
     }
 
     public void sessionDestroyed(HttpSessionEvent event)  { 

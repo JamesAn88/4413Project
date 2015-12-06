@@ -22,11 +22,11 @@ xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
       <section id="client-manager">
         <div id="admin">
           <ul>
-            <c:if test="${empty sessionScope['com.foodrus.util.loggedIn'].account}">
+            <c:if test="${empty sessionScope['com.foodrus.util.loggedIn']}">
               <li><a href="${contextPath}/action/login"></a>Login</li>
             </c:if>
-            <c:if test="${not empty sessionScope['com.foodrus.util.loggedIn'].account}">
-              <li>${sessionScope['com.foodrus.util.loggedIn'].account}</li>
+            <c:if test="${not empty sessionScope['com.foodrus.util.loggedIn']}">
+              <li>${sessionScope['com.foodrus.util.userProfile'].account}</li>
               <li><a href="${contextPath}/action/logout">Log out</a></li>
             </c:if>
             

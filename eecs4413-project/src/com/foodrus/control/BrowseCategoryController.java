@@ -39,7 +39,7 @@ public class BrowseCategoryController extends ControllerImpl{
 			try {
 				cats = (new CategoryDao()).getAll();
 				lastDatabaseUpdate = System.currentTimeMillis();
-				IOHelper.resolvePictures(request.getServletContext().getRealPath("/res/img"), cats);
+				IOHelper.resolvePictures(request.getServletContext().getRealPath(ViewPath.IMAGES_DIR), cats);
 			} catch (SQLException | NamingException e) {
 				throw new ServletException("Could not get AllCategories",e);
 			}
