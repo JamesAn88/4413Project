@@ -1,10 +1,8 @@
 package com.foodrus.control;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +14,6 @@ import com.foodrus.bean.vo.Item;
 import com.foodrus.dao.jdbp.ItemDao;
 import com.foodrus.util.Constants;
 import com.foodrus.util.Constants.ServletAttribute;
-import com.foodrus.util.Constants.ViewPath;
 
 public class AddItemController implements Controller {
 
@@ -37,7 +34,7 @@ public class AddItemController implements Controller {
 				throw new ServletException(e);
 			} 
 			ShoppingItem shoppingItem = new ShoppingItem(addedItem);
-			shoppingItem.setQty(request.getParameter("quantity"));
+			shoppingItem.setQty(qntyString);
 			ShoppingItemValidator validator = new ShoppingItemValidator();
 			List<String> errors = validator.validate(shoppingItem);
 			if(errors == null || errors.isEmpty()){
@@ -47,7 +44,7 @@ public class AddItemController implements Controller {
 					request.getSession().setAttribute(ServletAttribute.CART, cart);
 				}
 				cart.addItem(shoppingItem);
-				response.sendRedirect((String)request.getSession().getAttribute(Constants.ServletAttribute.LASTVISITED));
+				response.sendRedirect((String)request.getSession().getAttribute(Constants.ServletAttribute.LASTVISITED)+"?"+(String)request.getSession().getAttribute(Constants.ServletAttribute.LAST_QUERY_STRING));
 			} else {
 				request.setAttribute(ServletAttribute.ERRORS, errors);
 				response.sendRedirect((String)request.getSession().getAttribute(Constants.ServletAttribute.LASTVISITED));

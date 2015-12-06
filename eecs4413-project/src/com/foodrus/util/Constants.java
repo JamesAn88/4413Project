@@ -25,6 +25,7 @@ public class Constants {
 		public static final String SEARCH_RESULT = "com.foodrus.util.searchResult";
 		public static final String ERRORS = "com.foodrus.util.errors";
 		public static final String LASTVISITED = "com.foodrus.util.lasturl";
+		public static final String LAST_QUERY_STRING = "com.foodrus.util.lastquery";
 		public static final String USER = "user";
 		public static final String HASH = "hash";
 		public static final String BACK = "back";

@@ -30,7 +30,7 @@
 				</label>
 				<br/>
 				<lable id="itemprice">Unit price:  ${item.price}</lable>
-				<form action="" method="GET">
+				<form action="${contextPath}/action/additem" method="GET">
 					<input type="hidden" id="itemid" name="chosenitem" value="${item.number}" />
 					<span id="purchasetext">Quanity to purchase:</span>
 					<input id="quantity" name="chosenquantity" type="text" value="" /> 

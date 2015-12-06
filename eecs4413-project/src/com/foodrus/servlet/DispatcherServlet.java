@@ -66,6 +66,7 @@ public class DispatcherServlet extends HttpServlet {
 		// *** set home as default last visited
 		if(target != null){
 			session.setAttribute(ServletAttribute.LASTVISITED, url);
+			session.setAttribute(ServletAttribute.LAST_QUERY_STRING, request.getQueryString());
 			request.setAttribute(ServletAttribute.TARGET, target);
 			request.getRequestDispatcher(ViewPath.DASH_BOARD).forward(request, response);
 		} else {
