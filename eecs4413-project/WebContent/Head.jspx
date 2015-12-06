@@ -27,7 +27,7 @@
         <br />
         <div id="cart">
           <a href="${contextPath}/action/showCart"><img src="${contextPath}/res/img/cart.png" alt="Shopping Cart"/></a>
-          <span>0 items $0.00</span>
+          <span>${itemCount} items ${subTotal}</span>
         </div>
       </section>
     </div>
