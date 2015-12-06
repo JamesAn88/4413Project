@@ -1,13 +1,20 @@
 package com.foodrus.util;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.List;
+
+import com.foodrus.bean.vo.Category;
 
 public final class IOHelper {
 
@@ -62,5 +69,28 @@ public final class IOHelper {
 		}
 		return sb.toString(); 
 	}
-
+	
+	/**
+	 * write the pictures of Categories to local storage
+	 * then release the picture and by setting to null
+	 * @param outputFolder
+	 * @param cats
+	 * @throws IOException
+	 */
+	public static void resolvePictures(String outputFolder, List<Category> cats) throws IOException {
+		if(cats != null){
+			for(Category cat : cats){
+				Path path = Paths.get(outputFolder, String.valueOf(cat.getId()));
+				OutputStream out = new BufferedOutputStream(new FileOutputStream(path.toFile()));
+				out.write(cat.getPicture());
+				out.close();
+				// release the picture bytes to save memory
+				cat.setPicture(null); 
+			}
+		}
+	}
+	
+	public static void resolvePurchaseOrders(){
+		
+	}
 }
