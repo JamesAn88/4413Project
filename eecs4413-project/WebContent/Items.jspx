@@ -30,13 +30,10 @@
 				<label id="itemqperunit"> Quantity per Unit: ${item.unit}
 				</label>
 				<br/>
-<<<<<<< HEAD
-				<lable id="itemprice">Unit price: <fmt:formatNumber value="${item.price}" type="currency"/></lable>
-				<form action="" method="GET">
-=======
-				<lable id="itemprice">Unit price:  ${item.price}</lable>
+
+				<label id="itemprice">Unit price: <fmt:formatNumber value="${item.price}" type="currency"/></label>
+				
 				<form action="${contextPath}/action/additem" method="GET">
->>>>>>> 29a354e8252adba56832a9edaddbc32944243066
 					<input type="hidden" id="itemid" name="chosenitem" value="${item.number}" />
 					<span id="purchasetext">Quanity to purchase:</span>
 					<input id="quantity" name="chosenquantity" type="text" value="" /> 
