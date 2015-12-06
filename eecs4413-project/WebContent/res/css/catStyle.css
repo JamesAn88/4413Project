@@ -1,0 +1,58 @@
+/*category style*/
+#catTable
+{
+	background-color:#ffe5cc;
+	width:100%;
+	
+}
+
+#catTable td
+{
+	height: 50px;
+}
+
+#catTable td a
+{
+	color: green;
+	
+}
+
+#itemname
+{
+	color:green;
+	font-weight: bold;
+}
+
+#itemnumber
+{
+	color:#ffe6cc;
+	font-size: 12px;
+	font-family: "Century Gothic","Times New Roman",Times,serif;
+}
+
+#itemqperunit
+{
+	color:#ffe6cc;
+	font-size: 12px;
+	font-family: "Century Gothic","Times New Roman",Times,serif;
+}
+
+#itemprice
+{
+	color:#ffe6cc;
+	font-weight: bold;
+}
+#quantity
+{
+	width: 40px;
+}
+
+#purchasetext
+{
+	color:#ffffcc;
+	font-weight: bold;
+}
+#addcart
+{
+	padding-left: 5px;
+}

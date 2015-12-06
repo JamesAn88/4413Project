@@ -24,26 +24,7 @@ fieldset {
 }
 
 form {
-	width: 275px;;
-	background: -webkit-gradient(linear, bottom, left 35%, from(#CCCCCC),
-		to(#EEEEEE));
-	background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 35%);
-	margin: auto;
-	font-family: Calibri, Ariel, sans-serif;
-	font-size: 16px;
-	font-style: italic;
-	font-weight: bold;
-	color: #09C;
-	text-decoration: none;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	padding: 8px;
-	border: 1px solid #999;
-	border: inset 1px solid #333;
-	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	
 }
 
 .A label {
@@ -249,3 +230,7 @@ sup {
 	
 }
 /*home page style*/
+
+
+
+
