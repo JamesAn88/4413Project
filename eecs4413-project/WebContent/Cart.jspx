@@ -56,7 +56,7 @@
           </c:forEach>          
         </c:when>
         <c:otherwise>
-          <div align="center" style="padding:1em;">Your cart is empty.</div>
+          <div id="msg">Your cart is empty.</div>
         </c:otherwise>
       </c:choose>
     </div>
@@ -132,6 +132,7 @@
             <form style="display:inline" action="${contextPath}/action/checkOut">
               <input type="submit" name="actionButton" id="actionButton"  value="Check out" />
             </form>
+            <label>Or</label>
             <form style="display:inline" action="${contextPath}/action/continueShopping">
               <input type="submit" name="actionButton" id="actionButton" value="Continue Shopping" />
             </form>
@@ -143,6 +144,7 @@
             <form style="display:inline" action="${contextPath}/action/checkOut">
               <input type="submit" name="actionButton" id="actionButton"  value="Cancel" />
             </form>
+            <label>Or</label>
             <form style="display:inline" action="${contextPath}/action/continueShopping">
               <input type="submit" name="actionButton" id="actionButton" value="Continue Shopping" />
             </form>

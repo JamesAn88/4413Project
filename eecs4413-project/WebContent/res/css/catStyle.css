@@ -116,3 +116,13 @@ table td {
 #total {
 	float: left;
 }
+
+#msg
+{
+	color: white;
+	font-weight: bold;
+	background-color: red;
+	width: 200px;
+	padding-left: 30px;
+	margin: 20px;
+}
