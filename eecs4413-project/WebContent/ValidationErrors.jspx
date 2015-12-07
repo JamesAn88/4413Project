@@ -13,8 +13,9 @@
 	type="text/css" title="eecs4413" media="screen, print" />
 </head>
 <body>
-<fieldset>
+
 <c:if test="${not empty requestScope['com.foodrus.util.errors'] }">
+<fieldset>
 	<h3>Validation Errors:</h3>
 	<div id="errorSection">
 	<ul class="errors">
@@ -24,8 +25,9 @@
 		</c:forEach>
 	</ul>
 	</div>
+	</fieldset>
 </c:if>
-</fieldset>
+
 </body>
 	</html>
 </jsp:root>
