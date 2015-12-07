@@ -1,6 +1,7 @@
 package com.foodrus.control;
 
 import java.security.MessageDigest;
+import java.security.SecureRandom;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,9 @@ import com.foodrus.util.Constants.ServletAttribute;
 
 
 public class LoginController extends ControllerImpl {
-
+	private int token;
+	private SecureRandom generator = new SecureRandom();
+	
 	@Override
 	public View handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException {
@@ -27,7 +30,7 @@ public class LoginController extends ControllerImpl {
 			String hashed;
 			try {
 				MessageDigest sha1Md = MessageDigest.getInstance("SHA1"); 
-				byte[] digest = sha1Md.digest(user.concat(ServletAttribute.TRADESECRET).getBytes()); 
+				byte[] digest = sha1Md.digest((user+token).getBytes()); 
 				hashed = DatatypeConverter.printHexBinary(digest);
 				System.out.println("hash = " + hash);
 				System.out.println("hashed = " + hashed);
@@ -54,8 +57,10 @@ public class LoginController extends ControllerImpl {
 				throw new ServletException(e);
 			}
 		} else {
+			token = generator.nextInt();
 			view.setDispatchType(View.REDIRECT);
-			view.setPath(ServletAttribute.AUTHSERVER.concat(request.getRequestURL().toString()));
+			view.setPath(String.format(ServletAttribute.AUTHSERVER_FORMAT, token+"", 
+					request.getRequestURL().toString()));
 		}
 		return view;
 	}
