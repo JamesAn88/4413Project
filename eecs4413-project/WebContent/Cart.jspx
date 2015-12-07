@@ -27,8 +27,10 @@
           <span class="td">Stock quantity</span>
           <span class="td">Total for product</span>
           <span class="td">Quantity</span>
-          <span class="td">Update</span>
-          <span class="td">Delete</span>
+          <c:if test="${ empty requestScope['confirmOrder'] or not requestScope['confirmOrder'] }">
+              <span class="td">Update</span>
+              <span class="td">Delete</span>
+          </c:if>
       </div>
       <c:choose>
         <c:when test="${ not empty sessionScope['com.foodrus.util.cart'].items }">
@@ -40,14 +42,21 @@
               <span class="td"><fmt:formatNumber type="currency"> ${shoppingItem.item.price}</fmt:formatNumber></span>
               <span class="td">${shoppingItem.item.qty}</span>
               <span class="td"><fmt:formatNumber type="currency"> ${shoppingItem.priceBeforeTax}</fmt:formatNumber></span>
-              <span class="td"><input type="text" name="newQty" id="newQty" value="${shoppingItem.qty}"/></span>
-              <span class="td"><input type="submit" name="actionButton" value="Update"/></span>
-              <span class="td"><input type="submit" name="actionButton" value="Delete"/></span>                
+              <c:choose>
+                <c:when test="${ not empty requestScope['confirmOrder'] and requestScope['confirmOrder'] }">
+                  <span class="td">${shoppingItem.qty}</span>
+                </c:when>
+                <c:otherwise>
+                  <span class="td"> <input type="text" name="newQty" id="newQty" value="${shoppingItem.qty}"/> </span>
+                  <span class="td"><input type="submit" name="actionButton" value="Update"/></span>
+                  <span class="td"><input type="submit" name="actionButton" value="Delete"/></span>                
+                </c:otherwise>
+              </c:choose>
             </form> 
           </c:forEach>          
         </c:when>
         <c:otherwise>
-          <div align="center" style="padding:1em; float:right;">Your cart is empty.</div>
+          <div align="center" style="padding:1em;">Your cart is empty.</div>
         </c:otherwise>
       </c:choose>
     </div>
@@ -118,13 +127,27 @@
       
       <!-- Check out & Continue shopping Section -->
       <div id="checkoutSection" >
-          <form action="${contextPath}/action/checkOut">
-            <input type="submit" name="checkOut" id="checkOut"  value="Check Out" />
-          </form>
-          <label>----Or----</label>
-          <form action="${contextPath}/action/continueShopping">
-            <input type="submit" name="continueShopping" id="continueShopping" value="Continue Shopping" />
-          </form>
+        <c:choose>
+          <c:when test="${ empty requestScope['confirmOrder'] or not requestScope['confirmOrder'] }">
+            <form style="display:inline" action="${contextPath}/action/checkOut">
+              <input type="submit" name="actionButton" id="actionButton"  value="Check out" />
+            </form>
+            <form style="display:inline" action="${contextPath}/action/continueShopping">
+              <input type="submit" name="actionButton" id="actionButton" value="Continue Shopping" />
+            </form>
+          </c:when>
+          <c:otherwise>
+            <form style="display:inline" action="${contextPath}/action/checkOut">
+              <input type="submit" name="actionButton" id="actionButton"  value="Confirm order" />
+            </form>
+            <form style="display:inline" action="${contextPath}/action/checkOut">
+              <input type="submit" name="actionButton" id="actionButton"  value="Cancel" />
+            </form>
+            <form style="display:inline" action="${contextPath}/action/continueShopping">
+              <input type="submit" name="actionButton" id="actionButton" value="Continue Shopping" />
+            </form>
+          </c:otherwise>  
+        </c:choose>  
       </div>
     </c:if>
   </html>

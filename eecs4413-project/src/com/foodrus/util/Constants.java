@@ -17,6 +17,7 @@ public class Constants {
 		public static final String CONTEXT_PATH = "contextPath"; // ServletContext Attribute
 		
 		public static final String TARGET = "com.foodrus.util.target";
+		public static final String PO = "com.foodrus.util.po";
 		public static final String CART = "com.foodrus.util.cart";
 		public static final String USER_PROFILE = "com.foodrus.util.userProfile";
 		public static final String LOGGED_IN = "com.foodrus.util.loggedIn";
@@ -26,6 +27,7 @@ public class Constants {
 		public static final String ERRORS = "com.foodrus.util.errors";
 		public static final String LASTVISITED = "com.foodrus.util.lasturl";
 		public static final String LAST_QUERY_STRING = "com.foodrus.util.lastquery";
+		public static final String PO_LIST ="com.foodrus.util.poList";
 		public static final String USER = "user";
 		public static final String HASH = "hash";
 		public static final String BACK = "back";
@@ -51,9 +53,11 @@ public class Constants {
 		public static final String CHECK_OUT = "/Checkout.jspx";
 		public static final String SEARCH = "/Search.jspx";
 		public static final String ITEMS = "/Items.jspx";
+		public static final String ORDERS = "/Orders.jspx";
 		public static final String PURCHASE_ORDERS_DIR = "/WEB-INF/purchaseOrders";
 		public static final String IMAGES_DIR = "/res/img";
 		public static final String LOGIN = "/action/login";
+		public static final String MY_ACCOUNT = "/MyAccount.jspx";
 	}
 	
 	// *** URL constants

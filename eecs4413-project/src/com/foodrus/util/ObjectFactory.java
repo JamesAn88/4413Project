@@ -101,9 +101,10 @@ public class ObjectFactory {
         return new JAXBElement<OrderType>(_Order_QNAME, OrderType.class, null, value);
     }
     
-    public OrderType createOrder(ShoppingCart cart, UserProfile profile, String hst, String shippingFee, String shippingWaive, String reducedShipping) throws Exception{
+    public OrderType createOrder(ShoppingCart cart, UserProfile profile, String hst, String shippingFee, String shippingWaive, String reducedShipping, int orderId) throws Exception{
     	OrderType order = createOrderType();
     	
+    	order.setId(BigInteger.valueOf(orderId));
     	//customer
     	CustomerType cust = createCustomerType();
     	cust.setAccount(profile.getAccount());
@@ -139,7 +140,7 @@ public class ObjectFactory {
     	double nonReduced = Double.parseDouble(shippingFee);
     	double reduced = Double.parseDouble(reducedShipping);
     	double waived = Double.parseDouble(shippingWaive);
-    	if (total < waived){
+    	if (total > waived){
     		shipping = reduced;
     	} else {
     		shipping = nonReduced;
@@ -147,7 +148,7 @@ public class ObjectFactory {
     	order.setShipping(BigDecimal.valueOf(shipping));
     	
     	//hst
-    	double HST = Double.parseDouble(hst);
+    	double HST = Double.parseDouble(hst) * total;
     	order.setHST(BigDecimal.valueOf(HST));
     	
     	//grandtotal

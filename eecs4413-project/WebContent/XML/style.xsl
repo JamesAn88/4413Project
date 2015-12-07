@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" 
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:template match="/">
     <html>
 	  <body>
@@ -7,15 +8,15 @@
 	    <table> 
 	      <tr> 
 	        <td><label>Order number:</label></td>
-	        <td><xsl:value-of select="order/@id"/></td>
+	        <td><xsl:value-of select="orderType/@id"/></td>
 	      </tr>
 	      <tr> 
 	        <td><label>Account number:</label></td>
-	        <td><xsl:value-of select="customer/@account"/></td>
+	        <td><xsl:value-of select="orderType/customer/@account"/></td>
 	      </tr>
 	      <tr> 
-	        <td><label>Order date:</label></td>
-	        <td><xsl:value-of select="order/@submitted"/></td>
+	     <td><label>Order date:</label></td>
+	     <td><xsl:value-of select="orderType/@submitted"/></td>
 	      </tr>
 	    </table>
 	    
@@ -28,7 +29,7 @@
 	        <th style="text-align:center">Quantity</th>
 	        <th style="text-align:center">Extended</th>
 	      </tr>
-	      <xsl:for-each select="items/item">
+	      <xsl:for-each select="orderType/items/item">
 	        <tr>
 	          <td><xsl:value-of select="@number"/></td>
 	          <td><xsl:value-of select="name"/></td>
@@ -39,23 +40,23 @@
 	      </xsl:for-each>
 	    </table>
 
-	    <hr size="2" width="500px"/>
+	    <hr size="2" width="325px" align="left"/>
 	    <table> 
 	      <tr> 
 	        <td><label>Sub-Total:</label></td>
-	        <td><xsl:value-of select="total"/></td>
+	        <td><xsl:value-of select="orderType/total"/></td>
 	      </tr>
 	      <tr> 
 	        <td><label>Shipping:</label></td>
-	        <td><xsl:value-of select="shipping"/></td>
+	        <td><xsl:value-of select="orderType/shipping"/></td>
 	      </tr>
 	      <tr> 
 	        <td><label>HST:</label></td>
-	        <td><xsl:value-of select="HST"/></td>
+	        <td><xsl:value-of select="orderType/HST"/></td>
 	      </tr>
 	      <tr> 
 	        <td><label>Grand Total:</label></td>
-	        <td><xsl:value-of select="grandTotal"/></td>
+	        <td><xsl:value-of select="orderType/grandTotal"/></td>
 	      </tr>
 	    </table>
 	  </body>
