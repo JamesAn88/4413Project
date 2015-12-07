@@ -32,14 +32,14 @@ public class SecurityFilter implements Filter {
      * Default constructor. 
      */
     public SecurityFilter() {
-        // TODO Auto-generated constructor stub
+        super();
     }
 
 	/**
 	 * @see Filter#destroy()
 	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
+		/* do nothing */
 	}
 
 	/**
@@ -50,10 +50,10 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession();
 		Boolean isLoggedIn = (Boolean)session.getAttribute(ServletAttribute.LOGGED_IN);
-		if(Resource.CHECK_OUT.equals(DispatcherServlet.parseResources(httpRequest.getRequestURI()))){
-			if(isLoggedIn == null || !isLoggedIn){
-				request.getRequestDispatcher(ViewPath.LOGIN).forward(request, response);
-			}
+		String requestedUrl = DispatcherServlet.parseResources(httpRequest.getRequestURI());
+		String forwardUrl = validateUser(requestedUrl, isLoggedIn);
+		if(forwardUrl != null){
+			request.getRequestDispatcher(forwardUrl).forward(request, response);
 		} else {
 			chain.doFilter(request, response);
 		}
@@ -63,7 +63,16 @@ public class SecurityFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+		/* do nothing */
 	}
 
+	private String validateUser(String resource, Boolean isLoggedIn){
+		String forwardUrl = null;
+		if(Resource.CHECK_OUT.equals(resource)){
+			if(isLoggedIn == null || !isLoggedIn){
+				forwardUrl = ViewPath.LOGIN;
+			}
+		}
+		return forwardUrl;
+	}
 }

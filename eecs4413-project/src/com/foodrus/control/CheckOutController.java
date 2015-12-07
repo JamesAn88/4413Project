@@ -2,6 +2,7 @@ package com.foodrus.control;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.foodrus.bean.ShoppingCart;
 import com.foodrus.bean.UserProfile;
 import com.foodrus.util.Constants.ServletAttribute;
-import com.foodrus.util.Constants.Url;
 import com.foodrus.util.Constants.ViewPath;
 import com.foodrus.util.ObjectFactory;
 import com.foodrus.util.OrderType;
@@ -43,7 +43,9 @@ public class CheckOutController extends ControllerImpl {
 				File poFile = POHelper.createPO(order, 
 						request.getServletContext().getRealPath(ViewPath.PURCHASE_ORDERS_DIR));
 				view.setDispatchType(View.FORWARD);
-				view.setPath(ViewPath.PURCHASE_ORDERS_DIR.concat(Url.SEPARATOR.concat(poFile.getName())));
+				view.setPath(Paths.get(ViewPath.PURCHASE_ORDERS_DIR, 
+						poFile.getParentFile().getName(), 
+						poFile.getName()).toString());
 			} catch (Exception e){
 				throw new ServletException(e);
 			}

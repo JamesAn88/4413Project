@@ -30,7 +30,7 @@ public class Constants {
 		public static final String HASH = "hash";
 		public static final String BACK = "back";
 		public static final String TRADESECRET = "secret";
-		public static final String AUTHSERVER = "https://www.eecs.yorku.ca/~cse31008/projectAuth/Auth.cgi?back=";
+		public static final String AUTHSERVER = "https://www.cse.yorku.ca/~cse21051/projectAuth/Auth.cgi?back=";
 		public static final String HST_CONTEXTPARAM = "HST";
 		public static final String REDUCED_SHIPPING_CONTEXTPARAM = "REDUCEDSHIPPING";
 		public static final String SHIPPING_COST_CONTEXTPARAM = "SHIPPINGCOST";
