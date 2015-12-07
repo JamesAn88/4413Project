@@ -31,8 +31,8 @@ public class Constants {
 		public static final String USER = "user";
 		public static final String HASH = "hash";
 		public static final String BACK = "back";
-		public static final String TRADESECRET = "secret";
-		public static final String AUTHSERVER_FORMAT = "https://www.cse.yorku.ca/~cse21051/projectAuth/Auth.cgi?token=%s&back=%s";
+		public static final String TRADESECRET = "11850539574803748954511465232603835743288401123108386029232010505137480652464235096705921628410148003499568874609717247628022206165767457311981401642693902";
+		public static final String AUTHSERVER = "https://www.cse.yorku.ca/~cse21051/projectAuth/Auth.cgi?back=";
 		public static final String HST_CONTEXTPARAM = "HST";
 		public static final String REDUCED_SHIPPING_CONTEXTPARAM = "REDUCEDSHIPPING";
 		public static final String SHIPPING_COST_CONTEXTPARAM = "SHIPPINGCOST";
