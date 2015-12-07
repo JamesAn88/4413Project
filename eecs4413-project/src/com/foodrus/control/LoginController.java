@@ -1,5 +1,6 @@
 package com.foodrus.control;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 
@@ -15,7 +16,7 @@ import com.foodrus.util.Constants.ServletAttribute;
 
 
 public class LoginController extends ControllerImpl {
-	private int token;
+	private BigInteger token;
 	private SecureRandom generator = new SecureRandom();
 	
 	@Override
@@ -57,7 +58,7 @@ public class LoginController extends ControllerImpl {
 				throw new ServletException(e);
 			}
 		} else {
-			token = generator.nextInt();
+			token = new BigInteger(512, generator);
 			view.setDispatchType(View.REDIRECT);
 			view.setPath(String.format(ServletAttribute.AUTHSERVER_FORMAT, token+"", 
 					request.getRequestURL().toString()));
